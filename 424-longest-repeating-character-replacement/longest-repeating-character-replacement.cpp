@@ -7,7 +7,7 @@ public:
         while(right < s.size()){
             freq[s[right]-'A']++;
             maxCount = max(maxCount, freq[s[right]-'A']);
-            while((right-left+1)-maxCount > k){
+            if((right-left+1)-maxCount > k){
                 freq[s[left]-'A']--;
                 left++;
             }
