@@ -7,23 +7,18 @@ public:
         return true;
     }
     bool checkInclusion(string s1, string s2) {
-        int len1 = s1.size();
-        int len2 = s2.size();
-        if(len1>len2) return false;
-
-        int freq[26] = {0};
-        for(int i =0; i<len1; i++){
-            freq[s1[i] - 'a']++;
+        if(s1.length()>s2.length()) return false;
+        int s1arr[26] = {0};
+        int s2arr[26] = {0};
+        for(int i=0; i<s1.length(); i++){
+            s1arr[s1[i]-'a']++;
+            s2arr[s2[i]-'a']++;
         }
-        for(int i =0; i<len2; i++){
-            int windind= 0, ind=i;
-            int windfreq[26] = {0};
-            while(windind<len1 && ind<len2){
-                windfreq[s2[ind]- 'a']++;
-                windind++; ind++;
-            }
-            if(isfreqsame(windfreq,freq)) return true;
+        for(int i =0; i<s2.length() - s1.length(); i++){
+            if(isfreqsame(s1arr,s2arr)) return true;
+            s2arr[s2[i+s1.length()]-'a']++;
+            s2arr[s2[i]-'a']--;
         }
-        return false;
+        return isfreqsame(s1arr,s2arr);
     }
 };
