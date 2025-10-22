@@ -1,14 +1,16 @@
 class Solution {
 public:
     string largestOddNumber(string num) {
-        string res = "";
+        int ind = -1;
         int len = num.size();
         for(int i=len-1; i>=0; i--){
-            char ch = num[i];
-            if(ch=='9'|| ch=='7'||ch=='5'||ch=='3'||ch=='1'){
-                return num.substr(0,i+1);
+            if((num[i]-'0')%2 == 1){
+                ind = i;
+                break;
             }
         }
-        return res;
+        int i = 0;
+        while(i<=ind && num[i]=='0') i++;
+        return num.substr(i,ind-i+1);
     }
 };
