@@ -1,15 +1,12 @@
 class Solution {
 public:
     int repeatedNTimes(vector<int>& nums) {
-        int k = nums.size();
-        int n = k/2;
-        unordered_map<int,int> mpp;
-        for(int i = 0; i<k; i++){
-            mpp[nums[i]]++;
-            if(mpp[nums[i]]>=n){
+        //PigeonHole Principle
+        for(int i = 0; i<nums.size()-2; i++){
+            if(nums[i] == nums[i+1] || nums[i] == nums[i+2]){
                 return nums[i];
             }
         }
-        return -1;
+        return nums[nums.size()-1];
     }
 };
