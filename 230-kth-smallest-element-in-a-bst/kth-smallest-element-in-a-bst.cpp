@@ -18,7 +18,7 @@ public:
         return val;
     }
     void inorder(TreeNode* root, int k){
-        if(!root) return;
+        if(!root || cnt>=k) return;
         inorder(root->left, k);
         if(++cnt == k) val = root->val;
         inorder(root->right, k);
