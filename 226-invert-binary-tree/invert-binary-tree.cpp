@@ -11,17 +11,16 @@
  */
 class Solution {
 public:
-    TreeNode* invertTree(TreeNode* root) {
-        if(root==NULL) return NULL;
-        queue<TreeNode*> q;
-        q.push(root);
-        while(!q.empty()){
-            TreeNode* node = q.front();
-            q.pop();
-            swap(node->left, node->right);
-            if(node->left) q.push(node->left);
-            if(node->right) q.push(node->right);
+    void swapChildren(TreeNode* t) {
+        if (t == nullptr) { 
+            return;
         }
+        swap(t->left, t->right); 
+        swapChildren(t->left);
+        swapChildren(t->right);
+    }
+    TreeNode* invertTree(TreeNode* root) {
+        swapChildren(root);
         return root;
     }
 };
