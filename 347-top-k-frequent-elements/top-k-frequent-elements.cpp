@@ -5,17 +5,17 @@ public:
         for(int num: nums){
             freq[num]++;
         }
-        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>> > minH;
-        for(auto &it: freq){
-            minH.push({it.second, it.first});
-            if(minH.size()>k){
-                minH.pop();
-            }
+        vector<vector<int>> bucket(nums.size()+1);
+        for( auto &it: freq){
+            bucket[it.second].push_back(it.first);
         }
         vector<int> res;
-        while(!minH.empty()){
-            res.push_back(minH.top().second);
-            minH.pop();
+
+        for(int i= bucket.size()-1; i>=0 && res.size()<k; i--){
+            for(int num: bucket[i]){
+                res.push_back(num);
+                if(res.size()==k) break;
+            }
         }
         return res;
     }
