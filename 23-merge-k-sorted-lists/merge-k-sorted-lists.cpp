@@ -41,6 +41,5 @@ public:
         ListNode* result = dummy->next;
         delete(dummy);
         return result;
-
     }
 };
