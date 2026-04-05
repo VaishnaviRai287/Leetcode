@@ -7,14 +7,13 @@ public:
         for (int x : hand) freq[x]++;
 
         for (auto &[num, count] : freq) {
-            if (count > 0) {
-            for (int i = 1; i < groupSize; i++) {  
-            int curr = num + i;
-            if (freq.count(curr) == 0 || freq[curr] < count) return false;
-            freq[curr] -= count;
-        }
-        freq[num] = 0; 
-    }
+            if (count == 0) continue;    
+            for (int i = 1; i < groupSize; i++) {
+                auto it = freq.find(num + i);
+                if (it == freq.end() || it->second < count)
+                    return false;
+                it->second -= count;
+            }
         }
         return true;
     }
