@@ -15,7 +15,7 @@ public:
             }
         }
 
-        vector<vector<int>> dir = {{1,0}, {-1,0}, {0,1}, {0,-1}};
+        int dir[4][2] = {{1,0},{-1,0},{0,1},{0,-1}};
         while(!q.empty()){
             auto [r,c] = q.front();
             q.pop();
