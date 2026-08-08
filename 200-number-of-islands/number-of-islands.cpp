@@ -1,6 +1,6 @@
 class Solution {
 public:
-     void dfs(int r, int c, vector<vector<char>>& grid) {
+    void dfs(int r, int c, vector<vector<char>>& grid){
         int n = grid.size();
         int m = grid[0].size();
         if (r < 0 || c < 0 || r >= n || c >= m || grid[r][c] != '1')
@@ -12,13 +12,11 @@ public:
         dfs(r, c-1, grid);
     }
     int numIslands(vector<vector<char>>& grid) {
-        int n = grid.size();
-        int m = grid[0].size();
-
+        int m = grid.size();
+        int n = grid[0].size();
         int islands = 0;
-
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
+        for(int i = 0; i<m; i++){
+            for(int j = 0; j<n; j++){
                 if(grid[i][j] == '1'){
                     islands++;
                     dfs(i, j, grid);
